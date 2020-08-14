@@ -57,17 +57,18 @@ yp = 300;
 
 
 function touchHandler(ev) {
-  alert("I am alert");
+  
   if(mouseStatus == "down"){
     console.log(xp);
     if(ev.mousemove) {
-
+        
         var deltaX = ev.touches[0].pageX - xp;
         var deltaY = ev.touches[0].pageY - yp;
         //var deltaX = ev.clientX-xp;
         //var deltaY = ev.clientY-yp;
         xdisp = xp+deltaX;
         ydisp = yp+deltaY;
+      alert("I am alert"+xdisp);
       if(xp >= canvas.width-50 || xp <= 0 || yp >= canvas.height-50 || yp<=0 ){
         x=ev.touches[0].pageX;
         y=ev.touches[0].pageY;
