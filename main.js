@@ -68,7 +68,7 @@ function touchHandler(ev) {
         //var deltaY = ev.clientY-yp;
         xdisp = xp+deltaX;
         ydisp = yp+deltaY;
-      alert("I am alert"+xdisp);
+      //alert("I am alert"+xdisp);
       if(xp >= canvas.width-50 || xp <= 0 || yp >= canvas.height-50 || yp<=0 ){
         x=ev.touches[0].pageX;
         y=ev.touches[0].pageY;
@@ -86,11 +86,11 @@ function touchHandler(ev) {
         ev.preventDefault();
       }
 
-        context.clearRect(0, 0, canvas.width, canvas.height);
-        context.drawImage(base_image, xdisp, ydisp);
-        xp = xdisp;
-        yp = ydisp
-        ev.preventDefault();
+        //context.clearRect(0, 0, canvas.width, canvas.height);
+        //context.drawImage(base_image, xdisp, ydisp);
+        //xp = xdisp;
+        //yp = ydisp
+        //ev.preventDefault();
 }
     if(ev) {
       deltaX = ev.clientX-x;
