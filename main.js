@@ -62,8 +62,8 @@ function touchHandler(ev) {
     console.log(xp);
     if(ev) {
         
-        var deltaX = ev.touches[0].pageX - xp;
-        var deltaY = ev.touches[0].pageY - yp;
+        var deltaX = ev.targetTouches[0].pageX - xp;
+        var deltaY = ev.targetTouches[0].pageY - yp;
         //var deltaX = ev.clientX-xp;
         //var deltaY = ev.clientY-yp;
         xdisp = xp+deltaX;
@@ -79,8 +79,8 @@ function touchHandler(ev) {
 
         xp = xdisp;
         yp = ydisp;
-        x=ev.touches[0].pageX;
-        y=ev.touches[0].pageY;
+        x=ev.targetTouches[0].pageX;
+        y=ev.targetTouches[0].pageY;
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(base_image, xdisp, ydisp);
         ev.preventDefault();
@@ -129,8 +129,8 @@ function setDown(ev){
 
 }
   if(ev.mousedown){
-    x = ev.touches[0].pageX;
-    y = ev.touches[0].pageY;
+    x = ev.targetTouches[0].pageX;
+    y = ev.targetTouches[0].pageY;
     //xp = ev.clientY-x;
     //yp = ev.clientY-y;
   }
