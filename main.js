@@ -60,7 +60,7 @@ function touchHandler(ev) {
   if(mouseStatus == "down"){
     console.log(xp);
     if(ev.mousemove) {
-
+alert("Touch Moved");
         var deltaX = ev.touches[0].pageX - x;
         var deltaY = ev.touches[0].pageY - y;
         //var deltaX = ev.clientX-xp;
