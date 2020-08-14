@@ -57,6 +57,7 @@ yp = 300;
 
 
 function touchHandler(ev) {
+  alewrt("I am alert");
   if(mouseStatus == "down"){
     console.log(xp);
     if(ev.mousemove) {
