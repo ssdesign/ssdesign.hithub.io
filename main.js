@@ -57,20 +57,32 @@ yp = 300;
 
 
 function touchHandler(ev) {
-  console.log("======"+xp);
-
-
-
   if(mouseStatus == "down"){
     console.log(xp);
     if(ev.mousemove) {
 
-        //var deltaX = ev.touches[0].pageX - x;
-        //  var deltaY = ev.touches[0].pageY - y;
-        var deltaX = ev.clientX-xp;
-        var deltaY = ev.clientY-yp;
+        var deltaX = ev.touches[0].pageX - x;
+        var deltaY = ev.touches[0].pageY - y;
+        //var deltaX = ev.clientX-xp;
+        //var deltaY = ev.clientY-yp;
         xdisp = xp+deltaX;
         ydisp = yp+deltaY;
+      if(xp >= canvas.width-50 || xp <= 0 || yp >= canvas.height-50 || yp<=0 ){
+        x=ev.touches[0].pageX;
+        y=ev.touches[0].pageY;
+        //xp=base_image.x;
+        //yp=base_image.y;
+      }
+      else{
+
+        xp = xdisp;
+        yp = ydisp;
+        x=ev.touches[0].pageX;
+        y=ev.touches[0].pageY;
+        context.clearRect(0, 0, canvas.width, canvas.height);
+        context.drawImage(base_image, xdisp, ydisp);
+        ev.preventDefault();
+      }
 
         context.clearRect(0, 0, canvas.width, canvas.height);
         context.drawImage(base_image, xdisp, ydisp);
