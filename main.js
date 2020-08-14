@@ -57,7 +57,7 @@ yp = 300;
 
 
 function touchHandler(ev) {
-  var touches = event.changedTouches;
+  var touches = ev.changedTouches;
   if(mouseStatus == "down"){
     console.log(xp);
     if(ev) {
@@ -128,8 +128,8 @@ function setDown(ev){
   //yp = ev.clientY-y;
 
 }
-  if(ev.mousedown){
-    var touches = event.changedTouches;
+  if(ev){
+    var touches = ev.changedTouches;
     x = touches[0].pageX;
     y = touches[0].pageY;
     //xp = ev.clientY-x;
