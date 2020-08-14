@@ -34,7 +34,7 @@ function loadCharacter(){
   //alert("I am loadChar");
   base_image = new Image(50, 60);
   base_image.onload = drawImageActualSize;
-  base_image.src = 'img/player.png';
+  base_image.src = 'player.png';
 }
 
 function drawImageActualSize() {
