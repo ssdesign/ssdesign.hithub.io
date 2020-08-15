@@ -19,6 +19,9 @@ document.addEventListener("DOMContentLoaded", function(){
   canvas = document.getElementById('gameCanvas'),
   context = canvas.getContext('2d');
   //alert("I am init");
+  context.drawImage(this, xp, yp);
+context.font = "30px Arial";
+context.fillText("001", 10, 50);
   loadCharacter();
 });
 
