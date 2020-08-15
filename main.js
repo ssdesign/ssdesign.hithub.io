@@ -3,10 +3,17 @@ var base_image;
 var canvas;
 var el;
 var mouseStatus = "up";
+var touchStatus = "up";
 var playerWidth = 50;
 var playerHeight = 60;
 var x,y,xp,yp, xdisp, ydisp;
 var deltaX, deltaY;
+
+var startX = 0
+var startY = 0
+var distX = 0
+var distY=0
+
 canvas = document.getElementById('gameCanvas');
 document.addEventListener("DOMContentLoaded", function(){
   canvas = document.getElementById('gameCanvas'),
@@ -45,8 +52,8 @@ yp = 300;
 
   //context.drawImage(this, 0, 0, this.width, this.height);
   el = document.getElementById("gameCanvas");
-  el.addEventListener("touchstart", setDown, false);
-  el.addEventListener("touchend", setUp, false);
+  el.addEventListener("touchstart", setTouchDown, false);
+  el.addEventListener("touchend", setTouchUp, false);
   el.addEventListener("touchmove", touchHandler, false);
 
   el.addEventListener("mousedown", setDown, false);
@@ -54,13 +61,43 @@ yp = 300;
   el.addEventListener("mousemove", touchHandler, false);
 
 }
+function touchHandler(ev){
+  if(mouseStatus == "down"){
+    deltaX = ev.clientX-x;
+    deltaY = ev.clientY-y;
+    xdisp = deltaX+xp;
+    ydisp = deltaY+yp;
+    if(xp >= canvas.width-50 || xp <= 0 || yp >=canvas.height-50 || yp<=0 ){
+      x=ev.clientX;
+      y=ev.clientY;
+    }
+    else{
+      xp = xdisp;
+      yp = ydisp;
+      x=ev.clientX;
+      y=ev.clientY;
+      context.clearRect(0, 0, canvas.width, canvas.height);
+      context.drawImage(base_image, xdisp, ydisp);
+      ev.preventDefault();
+    }
+  }
 
+  if(touchStatus == "down"){
+    var touchobj = e.changedTouches[0]
+    var distX = parseInt(touchobj.clientX) - startX
+    var distY = parseInt(touchobj.clientY) - startY
+    //if(xp >= canvas.width-50 || xp <= 0 || yp >=canvas.height-50 || yp<=0 ){
+    //  x=ev.clientX;
+    //  y=ev.clientY;
+    //}
+    context.clearRect(0, 0, canvas.width, canvas.height);
+    context.drawImage(base_image, distX, distX);
+    e.preventDefault()
+  }
+}
 
 function touchHandler(ev) {
   console.log("======"+xp);
-
-
-
   if(mouseStatus == "down"){
     console.log(xp);
     if(ev) {
@@ -112,32 +149,28 @@ function touchHandler(ev) {
 }
 function setDown(ev){
   mouseStatus = "down";
-  if(ev){
   x = ev.clientX
   y = ev.clientY
-  //xp = ev.clientY-x;
-  //yp = ev.clientY-y;
-
-}
-  if(ev.mousedown){
-    x = ev.touches[0].pageX;
-    y = ev.touches[0].pageY;
-    //xp = ev.clientY-x;
-    //yp = ev.clientY-y;
-  }
 
 }
 
 function setUp(ev){
   mouseStatus = "up";
-  if(ev){
-    xp = xdisp;
-    yp = ydisp
+  xp = xdisp;
+  yp = ydisp
+}
 
-  }
-  if(ev.mousedown){
-    xp = xdisp;
-    yp = ydisp;
-  }
-
+function setTouchDown(e){
+  touchStatus = "down";
+  var touchobj = e.changedTouches[0] // reference first touch 
+  startxX = parseInt(touchobj.clientX) // get x position of    
+  startY = parseInt(touchobj.clientY)
+  e.preventDefault()
+}
+function setTouchUp(e){
+  touchStatus = "up";
+  var touchobj = e.changedTouches[0] // reference first touch 
+  startX = touchobj.clientX // get x position of    
+  startY = touchobj.clientY
+  e.preventDefault()
 }
