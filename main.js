@@ -49,7 +49,8 @@ function drawImageActualSize() {
 xp = 315;
 yp = 300;
   context.drawImage(this, xp, yp);
-
+context.font = "30px Arial";
+context.fillText("001", 10, 50);
   //context.drawImage(this, 0, 0, this.width, this.height);
   el = document.getElementById("gameCanvas");
   el.addEventListener("touchstart", setTouchDown, false);
